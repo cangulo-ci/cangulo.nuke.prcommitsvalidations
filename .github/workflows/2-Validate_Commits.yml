@@ -1,0 +1,18 @@
+name: PR Validate Commits v1
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  validate-conventional-commits:
+    name: Validating Conventional Commits
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Verifying commits follow conventions defined in prCommitValidationSettings.json
+        env:
+          GitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          ValidationSettingsPath: ./cicd/prCommitValidationSettings.json
+          PullRequestNumber: ${{ github.event.number }}
+        run: ./build.cmd ValidatePRCommits --no-logo --root . 
