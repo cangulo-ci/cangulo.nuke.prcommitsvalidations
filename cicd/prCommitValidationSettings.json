@@ -1,0 +1,8 @@
+{
+    "conventionalCommitTypes": [
+        "fix",
+        "patch",
+        "feat",
+        "major"
+    ]
+}
